@@ -15,6 +15,7 @@ export class CreateUserDTO {
 
   @IsNotEmpty()
   @Matches(RegexHelper.password, {
+    // Past helpers tem todos os regex de validação
     message: MessageHelper.Password_Valid,
   }) //Valida se a senha é forte
   password: string;

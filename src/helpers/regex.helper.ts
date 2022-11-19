@@ -1,3 +1,4 @@
+// Regex de validação de senha
 const password =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindOneOptions, Repository } from 'typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { UsersEntity } from './Users.entity';
@@ -18,9 +18,9 @@ export class UsersService {
     });
   }
 
-  async findOneUser(id: string) {
+  async findOneUser(options: FindOneOptions<UsersEntity>) {
     try {
-      return await this.usersReepository.findOneOrFail({ where: { id } });
+      return await this.usersReepository.findOneOrFail(options);
     } catch (error) {
       throw new NotFoundException(error.message);
     }

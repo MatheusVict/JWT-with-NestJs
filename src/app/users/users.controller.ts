@@ -9,12 +9,15 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
+@UseGuards(AuthGuard('jwt')) // Middlawere de autenticação q está nas estrategias
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
@@ -25,7 +28,7 @@ export class UsersController {
 
   @Get(':id')
   async show(@Param('id', new ParseUUIDPipe()) id: string) {
-    return await this.userService.findOneUser(id);
+    return await this.userService.findOneUser({ where: { id } });
   }
 
   @Post()
