@@ -49,4 +49,11 @@ export class UsersService {
 
     await this.usersReepository.softDelete({ id });
   }
+
+  async teste(req: any) {
+    const usua = req.user.email;
+    return await this.usersReepository.findOneOrFail({
+      where: { email: usua },
+    });
+  }
 }

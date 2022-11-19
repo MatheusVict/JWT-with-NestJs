@@ -9,6 +9,7 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -20,6 +21,11 @@ import { UsersService } from './users.service';
 @UseGuards(AuthGuard('jwt')) // Middlawere de autenticação q está nas estrategias
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
+
+  @Get('teste')
+  async go(@Req() req: any) {
+    return this.userService.teste(req);
+  }
 
   @Get()
   async index() {
