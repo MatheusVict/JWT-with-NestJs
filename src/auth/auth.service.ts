@@ -13,7 +13,7 @@ export class AuthService {
 
   // Aqui crio o token
   async login(user: Partial<UsersEntity>) {
-    const payload = { sub: user.id, email: user.email };
+    const payload = { id: user.id, email: user.email };
 
     return {
       token: this.jwtService.sign(payload),

@@ -24,7 +24,7 @@ export class UsersController {
 
   @Get('teste')
   async go(@Req() req: any) {
-    return this.userService.teste(req);
+    return req.user;
   }
 
   @Get()
